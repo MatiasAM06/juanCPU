@@ -1,0 +1,64 @@
+
+./build/program.elf:     file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+00000000 <main>:
+   0:	fe010113          	addi	sp,sp,-32
+   4:	00112e23          	sw	ra,28(sp)
+   8:	00812c23          	sw	s0,24(sp)
+   c:	02010413          	addi	s0,sp,32
+  10:	000107b7          	lui	a5,0x10
+  14:	7ac78793          	addi	a5,a5,1964 # 107ac <__global_pointer$+0xef44>
+  18:	fef42623          	sw	a5,-20(s0)
+  1c:	fe042423          	sw	zero,-24(s0)
+  20:	0240006f          	j	44 <main+0x44>
+  24:	fec42703          	lw	a4,-20(s0)
+  28:	ffffe7b7          	lui	a5,0xffffe
+  2c:	2b478793          	addi	a5,a5,692 # ffffe2b4 <__global_pointer$+0xffffca4c>
+  30:	00f707b3          	add	a5,a4,a5
+  34:	fef42623          	sw	a5,-20(s0)
+  38:	fe842783          	lw	a5,-24(s0)
+  3c:	00178793          	addi	a5,a5,1
+  40:	fef42423          	sw	a5,-24(s0)
+  44:	fe842703          	lw	a4,-24(s0)
+  48:	00200793          	li	a5,2
+  4c:	fce7dce3          	bge	a5,a4,24 <main+0x24>
+  50:	00000793          	li	a5,0
+  54:	00078513          	mv	a0,a5
+  58:	01c12083          	lw	ra,28(sp)
+  5c:	01812403          	lw	s0,24(sp)
+  60:	02010113          	addi	sp,sp,32
+  64:	00008067          	ret
+
+Disassembly of section .comment:
+
+00000000 <.comment>:
+   0:	3a434347          	.insn	4, 0x3a434347
+   4:	2820                	.insn	2, 0x2820
+   6:	31313567          	.insn	4, 0x31313567
+   a:	6335                	.insn	2, 0x6335
+   c:	34346537          	lui	a0,0x34346
+  10:	2029                	.insn	2, 0x2029
+  12:	3531                	.insn	2, 0x3531
+  14:	322e                	.insn	2, 0x322e
+  16:	302e                	.insn	2, 0x302e
+	...
+
+Disassembly of section .riscv.attributes:
+
+00000000 <.riscv.attributes>:
+   0:	1b41                	.insn	2, 0x1b41
+   2:	0000                	.insn	2, 0x0000
+   4:	7200                	.insn	2, 0x7200
+   6:	7369                	.insn	2, 0x7369
+   8:	01007663          	bgeu	zero,a6,14 <main+0x14>
+   c:	0011                	.insn	2, 0x0011
+   e:	0000                	.insn	2, 0x0000
+  10:	1004                	.insn	2, 0x1004
+  12:	7205                	.insn	2, 0x7205
+  14:	3376                	.insn	2, 0x3376
+  16:	6932                	.insn	2, 0x6932
+  18:	7032                	.insn	2, 0x7032
+  1a:	0031                	.insn	2, 0x0031

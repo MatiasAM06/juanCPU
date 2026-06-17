@@ -1,0 +1,68 @@
+[*]
+[*] GTKWave Analyzer v3.3.121 (w)1999-2024 BSI
+[*] Wed Jun 17 15:22:32 2026
+[*]
+[dumpfile] "/home/ppnothard/Desktop/riscv/holyMatrimony/signals.vcd"
+[dumpfile_mtime] "Mon Jun 15 01:50:05 2026"
+[dumpfile_size] 48440
+[savefile] "/home/ppnothard/Desktop/riscv/holyMatrimony/showcaseSignal.gtkw"
+[timestart] 263
+[size] 1920 1113
+[pos] -1 -1
+*-4.000000 20 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] riscv_tb.
+[treeopen] riscv_tb.uut.
+[sst_width] 334
+[signals_width] 217
+[sst_expanded] 1
+[sst_vpaned_height] 334
+@200
+-PC Assembly
+@22
+riscv_tb.uut.s1.pcOut[31:0]
+riscv_tb.uut.s1.jmpTar[31:0]
+riscv_tb.uut.s1.instruction[31:0]
+@200
+-
+-Register File
+@420
+riscv_tb.uut.s2.read_data1[31:0]
+riscv_tb.uut.s2.read_data2[31:0]
+riscv_tb.uut.s3.imm_out[31:0]
+riscv_tb.uut.s2.write_data[31:0]
+@200
+-
+-ALU
+@22
+riscv_tb.uut.aluControl[3:0]
+@420
+riscv_tb.uut.aluA[31:0]
+riscv_tb.uut.aluB[31:0]
+riscv_tb.uut.aluO[31:0]
+@28
+riscv_tb.uut.s4.zero
+riscv_tb.uut.s4.negative
+riscv_tb.uut.s4.overflow
+@29
+riscv_tb.uut.s4.carry
+@200
+-
+-Memory File
+@22
+riscv_tb.uut.s5.address[31:0]
+@28
+riscv_tb.uut.s5.memRead
+riscv_tb.uut.s5.memWrite
+@22
+riscv_tb.uut.s5.write_data[31:0]
+@200
+-
+-CU
+@28
+riscv_tb.uut.c1.PCSrc
+riscv_tb.uut.c1.is_jalr
+riscv_tb.uut.c1.RegWrite
+riscv_tb.uut.c1.ALUSrc
+riscv_tb.uut.c1.RegSrc[1:0]
+[pattern_trace] 1
+[pattern_trace] 0
