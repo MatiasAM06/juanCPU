@@ -1,15 +1,24 @@
 
 
 module instruction_memory(
-    input wire [31:0] addr, //Direcci髇 de memoria [31:0] (del PC)
-    output reg [31:0] instruction //Instrucci髇 de 32 bits le韉a [31:0]
+    input wire [31:0] addr, //Direcci贸n de memoria [31:0] (del PC)
+    output reg [31:0] instruction //Instrucci贸n de 32 bits le铆da [31:0]
     );
-    
+    // --- Matriz de Almacenamiento (RAM/ROM de Instrucciones) ---
+    // Declara una memoria de 1024 posiciones (palabras), donde cada posici贸n almacena 32 bits (4 bytes).
+    // Capacidad total: 4 KB de memoria de instrucciones.
     reg [31:0] insMem [0:1023];
+
+    // --- Inicializaci贸n de la Memoria ---
+    // Carga el c贸digo m谩quina en formato hexadecimal desde un archivo externo antes de iniciar la simulaci贸n.
     initial begin
     $readmemh("./build/program.hex", insMem);
     end
+    
+    // La lectura es as铆ncrona (combinacional). Reacciona inmediatamente si el PC cambia.
     always @(*) begin 
+         //Se usa 'addr[31:2]' para dividir la direcci贸n de bytes entre 4.
+        // Como cada instrucci贸n ocupa 4 bytes (32 bits), el arreglo 'insMem' se indexa por "palabras".
         instruction=insMem[addr[31:2]];        
     end
 
