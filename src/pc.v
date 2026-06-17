@@ -1,37 +1,49 @@
-
-
-
 module program_counter(
+
+// --- Se帽ales de Control Global ---
     input wire clk,
     input wire reset,
-    input wire pc_src, //selector de fuente de pr髕imo PC 
+// --- Se帽ales de Control del Camino de Datos ---
+    input wire pc_src, //selector de fuente de pr贸ximo PC 
                                 //00: PC+4 (secuencial)
-                                //01: Jump
+                                //01: JumpTarget
+                                
+   // --- Entradas de Direcci贸n ---                             
     input wire [31:0] jump_target,
+    
+    // --- Salidas ---
     output reg [31:0] pc_out,
     output reg [31:0] pc4
     
     );
-    wire [31:0] pc_plus_4;
-    assign pc_plus_4 = pc_out + 4; // Incremento secuencial: PC + 4
+    // --- Se帽ales Internas ---
+    wire [31:0] pc_plus_4;// Resultado de la suma secuencial
+    reg [31:0] pc_next; // Direcci贸n que se cargar谩 en el PC en el pr贸ximo ciclo 
 
-    reg [31:0] pc_next; // L骻ica combinacional para seleccionar pr髕imo PC
+
+// Sumador para el incremento secuencial del PC
+    assign pc_plus_4 = pc_out + 4; 
+
     
-    always @(*) begin
+  // MUX 1: Selecci贸n del pr贸ximo valor del PC y asignaci贸n de salidas 
+        always @(*) begin
         case (pc_src)
-            1'b0: pc_next = pc_plus_4;      // Secuencial
-            1'b1: pc_next = jump_target;  // Jump
-            default: pc_next = pc_plus_4;
+            1'b0: pc_next = pc_plus_4;    // Selecci贸n: Camino secuencial
+            1'b1: pc_next = jump_target;  // Selecci贸n: Camino de salto
+            default: pc_next = pc_plus_4; // En caso de fallas 
         endcase
+        // Asignaci贸n de la salida PC+4 dentro del bloque combinacional
         pc4=pc_plus_4;
     end
     
-    // Registro del PC (actualizaci髇 s韓crona)
+   // --- L贸gica Secuencial (Registro del PC) ---
+    
+    // Actualizaci贸n del registro del PC con Reset As铆ncrono
     always @(posedge clk or posedge reset) begin
         if (reset)
-            pc_out <= 32'h00000000;  // Direcci髇 inicial: 0x00000000
+            pc_out <= 32'h00000000;  // Direcci贸n inicial: 0x00000000
         else
-            pc_out <= pc_next;
+            pc_out <= pc_next; // Carga del nuevo valor del PC en el flanco de subida
     end
     
 endmodule
