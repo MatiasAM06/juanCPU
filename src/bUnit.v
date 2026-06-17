@@ -1,19 +1,23 @@
-
 module branch_unit(
+// --- Se帽ales de Control ---
     input wire jalr, //indica JALR
+// --- Entradas del Camino de Datos ---
     input wire [31:0] pc_current, //PC actual
-    input wire [31:0] imm, //extraido de la instrucci髇
+    input wire [31:0] imm, //extraido de la instrucci贸n
     input wire [31:0] rs1_data,
+// --- Salidas ---
     output reg [31:0] jump_target
-    
     );
     
-//C醠culo de direcciones destino  
-
-        
+ // --- L贸gica Combinacional para el C谩lculo de la Direcci贸n Destino ---
+ // Este bloque modela el multiplexor 4 que elige la base de la suma (PC o Registro)
     always @(*) begin
         case(jalr)
-            0:jump_target=(pc_current + imm);               //jal/b
+        // Caso JAL / BRANCH: Salto relativo al PC actual (PC + inmediato)
+            0:jump_target=(pc_current + imm);     
+            // Caso JALR: Salto relativo a registro (RS1 + inmediato)
+                // Se aplica un AND para poner en '0' el bit menos significativo (LSB),
+                // cumpliendo con la especificaci贸n ISA de RISC-V para alineaci贸n de memoria.          //jal/b
             1:jump_target=((rs1_data + imm) & 32'hFFFFFFFE); //jalr
             default:jump_target=(pc_current + imm);
         endcase
