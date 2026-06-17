@@ -7,7 +7,7 @@ module ALU(
 
 	output wire [31:0] result,
 	output wire [0:0] zero,
-	output wire [0:0] carry,	//Tied to zero cause fuck this
+	output wire [0:0] carry,	
 	output wire [0:0] negative,
 	output wire [0:0] overflow
 	);
@@ -43,8 +43,21 @@ module ALU(
 	assign carry = 0;
 	assign negative = tOut[31];
 	assign overflow = aluControl==ADD?(inA[31]^tOut[31]&(inB[31]^tOut[31])):0;
+	//--------------
+	//   Literals
+	//--------------
 
-
+	//ALU control mux literals
+	localparam ADD  = 4'b0000;
+	localparam SUB  = 4'b0001;
+	localparam AND  = 4'b0111;
+	localparam _OR  = 4'b1000;
+	localparam XOR  = 4'b1001;
+	localparam LLS  = 4'b0010;
+	localparam LRS  = 4'b0011;
+	localparam ARS  = 4'b0100;
+	localparam SLT  = 4'b0101;
+	localparam SLU  = 4'b0110;
 
 
 	always @(*) begin
@@ -66,22 +79,6 @@ module ALU(
 	end
 
 
-
-	//--------------
-	//   Literals
-	//--------------
-
-	//ALU control mux literals
-	localparam ADD  = 4'b0000;
-	localparam SUB  = 4'b0001;
-	localparam AND  = 4'b0111;
-	localparam _OR  = 4'b1000;
-	localparam XOR  = 4'b1001;
-	localparam LLS  = 4'b0010;
-	localparam LRS  = 4'b0011;
-	localparam ARS  = 4'b0100;
-	localparam SLT  = 4'b0101;
-	localparam SLU  = 4'b0110;
 
 
 endmodule
